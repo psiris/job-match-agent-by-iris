@@ -1,0 +1,81 @@
+# Search configuration for job-search skill.
+# Edit freely — search.py reads this file at runtime.
+
+locations:
+  - {city: "London",     country_code: "GB"}
+  - {city: "Dubai",      country_code: "AE"}
+  - {city: "Abu Dhabi",  country_code: "AE"}
+  - {city: "Zurich",     country_code: "CH"}
+  - {city: "Amsterdam",  country_code: "NL"}
+
+queries:
+  stratops:
+    - "chief of staff"
+    - "strategy and operations manager"
+    - "transformation lead"
+    - "business operations"
+    - "VP Finance & Strategy"
+    - "Operations Strategy Manager"
+    - "Asset Management"
+    - "Investment operations"
+    - "revenue strategy and operations"
+  techprod:
+    - "AI strategy"
+    - "AI product manager"
+    - "Tech Program Manager"
+    - "Product manager"
+    - "strategy AI adoption lead"
+    - "Tech Product Customer Success manager"
+    - "AI automation product lead"
+    - "Digital transformation lead"
+    - "deployment strategist"
+    - "data products manager"
+
+filters:
+  min_salary_gbp: 100000
+  reject_seniority_keywords:
+    - analyst
+    - intern
+    - associate
+    - graduate
+    - junior
+    - assistant
+  # C-suite (COO, CEO, CFO, CTO etc.) is rejected at LLM scoring layer, not here.
+  reject_language_requirements:
+    - "fluent german"
+    - "native german"
+    - "deutsche"
+    - "fluent french"
+    - "native french"
+    - "courant en français"
+    - "fluent italian"
+    - "native italian"
+    - "italiano fluente"
+
+freshness:
+  fresh_days: 7   # <= 7 days = fresh; > 7 = stale; missing/unparseable = unknown
+
+# FX rates to GBP for salary filtering. Hardcoded; refresh annually.
+fx_rates_to_gbp:
+  GBP: 1.00
+  USD: 0.79
+  EUR: 0.85
+  CHF: 0.91
+  AED: 0.21
+
+# Phase 2c only. Fill with companies Phase 2b's WebSearch is likely to miss.
+# Anything already seen in Phases 1/2a/2b is skipped automatically.
+# Keep this list small — expand only for companies you expect WebSearch to miss.
+ats_targets:
+  greenhouse: ["anthropic", "scale-ai"]
+  lever:      []
+  ashby:      []
+  workable:   []
+
+# Fallback web-search domains for recruiter sites.
+recruiter_sites:
+  - "per-people.com"
+  - "michaelpage.co.uk"
+  - "michaelpage.ae"
+  - "bayt.com"
+  - "robertwalters.co.uk"

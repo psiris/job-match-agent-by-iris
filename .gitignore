@@ -1,0 +1,13 @@
+.env*
+*.key
+*.pem
+.DS_Store
+latest_cv/
+cv_summary/
+memory/
+output/
+*transcript*.md
+*chat*.md
+.claude/settings.local.json
+__pycache__/
+*.pyc
