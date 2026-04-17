@@ -26,13 +26,19 @@ At a high level, it aims to:
 1. CV summary prep
 Read each family CV and generate a normalized summary used for matching.
 
-2. Search phase (full pipeline universe commitment)
-A full run searches across both role families (`stratops` and `techprod`) and applies hard constraints:
+2. Search phase (full pipeline universe commitment) across multiple platforms with applied constraints
+A full run searches both role families (`stratops` and `techprod`) across these source groups:
+1. JSearch (RapidAPI), which aggregates roles from boards such as LinkedIn and similar job sites.
+2. ATS and company-career pages discovered via web search.
+3. Recruiter and specialist hiring pages where relevant.
+
+The pipeline then applies hard filters:
 1. Locations: London (GB), Dubai (AE), Abu Dhabi (AE), Zurich (CH), Amsterdam (NL).
 2. Language: reject roles requiring German, French, or Italian.
 3. Seniority: keep medium-to-senior roles; reject analyst/intern/associate-level and C-suite executive roles (except Chief of Staff).
 4. Salary: reject roles with stated salary below 100k GBP-equivalent; keep roles where salary is not stated.
-The search layer deduplicates postings across sources before scoring.
+
+The search layer deduplicates postings across all sources before scoring.
 
 3. Match phase
 For each job description, extract the top required skills, score against the relevant CV summary, and produce an overall fit verdict.
